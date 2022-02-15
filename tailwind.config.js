@@ -17,7 +17,8 @@ module.exports = {
           'c_gray': '#343432',
           'c_green' :'#1E6F5D',
           'c_lightgreen': '#29BB89',
-          'c_yellow':'#F6ED46'
+          'c_yellow':'#F6ED46',
+          'c_background':'#BFBFBD'
         },
       },
     },
