@@ -213,6 +213,7 @@ export class MapComponent implements OnInit {
         position: myLatLng,
         map,
         title: "oh zebi ca marche",
+        icon:  "https://media.discordapp.net/attachments/282552629249441792/943595198380912700/outline_directions_bike_black_36dp.png" //add real link and customize icon
       });
       
     });
