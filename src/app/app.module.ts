@@ -9,13 +9,15 @@ import { MapComponent } from './map/map.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
+import { TrainingComponent } from './training/training.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent,
     LoginPageComponent,
-    MapComponent
+    MapComponent,
+    TrainingComponent
   ],
   imports: [
     BrowserModule,

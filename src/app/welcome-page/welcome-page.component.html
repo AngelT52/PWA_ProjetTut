@@ -3,7 +3,6 @@
 	<p class="px-4 py-2 text-lg font-bold text-gray-500">
 		Votre application de suivi sportif créé par Thierry Angel pour Moustache Bikes.
 	</p>
-	<app-login-page></app-login-page>
 	<div *ngIf="(afAuth.user | async)">
 		<p class="px-4 py-2 text-md font-bold text-gray-500">
 			Vous êtes connecté. <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="logout()">
@@ -13,6 +12,7 @@
 		
 	</div>
 	<div *ngIf="!(afAuth.user | async)">
+		<app-login-page></app-login-page>
 		<p class="px-4 py-2 text-md font-bold text-gray-500">
 			Vous n'êtes pas connecté.
 	    </p>
