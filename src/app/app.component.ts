@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastrService } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public afAuth : AngularFireAuth) {}
-  
+  constructor(public afAuth : AngularFireAuth, private toastr: ToastrService) {}
+
   ngOnInit(): void {
     const btn = document.querySelector("button.mobile-menu-button");
     const menu = document.querySelector(".mobile-menu");
@@ -27,4 +29,11 @@ export class AppComponent implements OnInit {
   })
   }
   title = 'sport-app';
+
+  notLoggedToaster(){
+
+    this.toastr.warning('Veuillez vous connecter svp.');
+  }
+
+  
 }

@@ -6,7 +6,7 @@
         <div class="flex justify-between">
             <div class="flex space-x-7">
                 <div>
-                    <a href="#" class="flex items-center py-4 px-2">
+                    <a routerLink='' class="flex items-center py-4 px-2">
                         <img src="assets/img/bike.png" alt="Bike" class="h-8 w-8 mr-2"> 
                         <!-- Bike icons created by photo3idea_studio - Flaticon - -->
                         <span class="font-semibold text-c_lightgreen text-lg">Sport App</span>
@@ -14,8 +14,10 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
                     <a routerLink='' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Accueil</a>
-                    <a routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Suivi de performance</a>
-                    <a routerLink='/training' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Entraînements</a>
+                    <a *ngIf="(afAuth.user | async)" routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Suivi de performance</a>
+                    <a *ngIf="!(afAuth.user | async)" href="#" (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Suivi de performance</a>
+                    <a *ngIf="(afAuth.user | async)" routerLink='/training' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Entraînements</a>
+                    <a *ngIf="!(afAuth.user | async)" href="#" (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Entraînements</a>
                     <a routerLink='/params' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Paramètres</a>
                 </div>
             </div>
@@ -46,6 +48,3 @@
 </nav>
 <router-outlet></router-outlet>
 
-<div class="w-full h-full" id="map">
-
-</div>
