@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { TrainingComponent } from './training/training.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { TrainingComponent } from './training/training.component';
     WelcomePageComponent,
     LoginPageComponent,
     MapComponent,
-    TrainingComponent
+    TrainingComponent,
+    RegisterPageComponent,
+    ParametersPageComponent
   ],
   imports: [
     BrowserModule,

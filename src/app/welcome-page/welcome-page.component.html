@@ -5,17 +5,17 @@
 	</p>
 	<div *ngIf="(afAuth.user | async)">
 		<p class="px-4 py-2 text-md font-bold text-gray-500">
-			Vous êtes connecté. <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="logout()">
+			Vous êtes connecté. 
+			<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="logout()">
 				Se déconnecter.
 			</button>
 		</p>
-		
 	</div>
 	<div *ngIf="!(afAuth.user | async)">
 		<app-login-page></app-login-page>
 		<p class="px-4 py-2 text-md font-bold text-gray-500">
 			Vous n'êtes pas connecté.
 	    </p>
-		
+		<a routerLink='/register' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Pas de compte ? Inscrivez vous, c'est gratuit</a>
 	</div>
 </div>

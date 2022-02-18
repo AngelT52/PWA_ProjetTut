@@ -28,7 +28,22 @@ export class AuthService {
         //  this.router.navigate(['map']);
         })
         .catch(error => {
-          console.log('auth service : userlogin : fail');
+          console.log('auth service : user login : fail');
+          console.log ('error code', error.code);
+          console.log('error', error);
+          if(error.code)
+            return {isValid : false, message : error.message};
+          else {return;}
+        });
+  }
+
+  signupUser(user : any): Promise<any> {
+    return this.afAuth.createUserWithEmailAndPassword(user.email,user.password)
+        .then((result) => {
+          result.user?.sendEmailVerification();
+        })
+        .catch(error => {
+          console.log('auth service : user signup : fail');
           console.log ('error code', error.code);
           console.log('error', error);
           if(error.code)
