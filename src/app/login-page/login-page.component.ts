@@ -43,4 +43,20 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
+  // Pour aller plus viter, a retirer plus tard
+  loginGuest() { 
+    
+    this.authService.loginUser("guest@guest.fr", "123456").then((result) => {
+      if (result == null) {
+        console.log('Utilisateur connecté');
+        this.router.navigate(['map']);
+      }
+      else if (result.isValid == false) {
+        console.log('Erreur avec la session invité', result);
+        this.firebaseErrorMessage = result.message ;
+
+      }
+    })
+  }
+
 }
