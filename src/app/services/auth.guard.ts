@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
           resolve(true)
         } else {
           console.log('Auth guard : échec connexion, route protégée');
-          this.router.navigate(['']);
           resolve(false)
         }
 

@@ -13,6 +13,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
     MapComponent,
     TrainingComponent,
     RegisterPageComponent,
-    ParametersPageComponent
+    ParametersPageComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
