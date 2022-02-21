@@ -15,6 +15,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     RegisterPageComponent,
     ParametersPageComponent,
     PagenotfoundComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

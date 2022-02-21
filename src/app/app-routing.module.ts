@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MapComponent } from './map/map.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path:'training', component : TrainingComponent, canActivate: [AuthGuard]},
   { path:'params', component : ParametersPageComponent},
   { path:'verify-email', component : VerifyEmailComponent},
+  { path:'reset-password', component : ForgotPasswordComponent},
   { path: '**', component: PagenotfoundComponent },
 
   

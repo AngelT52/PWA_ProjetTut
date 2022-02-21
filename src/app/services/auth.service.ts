@@ -61,4 +61,12 @@ export class AuthService {
           else {return;}
         });
   }
+
+  resetPassword(email :string): Promise<any> {
+    return this.afAuth.sendPasswordResetEmail(email)
+      .then(() => {
+        console.log('Auth service : reset de mdp')
+      })
+
+  }
 }

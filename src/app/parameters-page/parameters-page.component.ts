@@ -14,16 +14,10 @@ export class ParametersPageComponent implements OnInit {
 
   user!: Observable<any>;
   email!: string;
-  mailSent!: boolean;
-  isProgressVisible!: boolean;
-  firebaseErrorMessage!: string;
 
   constructor(private authService: AuthService ,public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
       this.user != null;
       this.email = '';
-      this.mailSent = false;
-      this.firebaseErrorMessage = '';
-
   }
 
   ngOnInit(): void {

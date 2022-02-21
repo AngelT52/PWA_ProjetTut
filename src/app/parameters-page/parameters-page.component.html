@@ -3,9 +3,9 @@
 	<p class="px-4 py-2 text-lg font-bold text-gray-500">
 		Paramètres
 	</p>
-
+    <a routerLink="/reset-password" role="button" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Réinitialiser son mot de passe</a>
     <div *ngIf="!(user | async)">
-        Rajouter paramètres hors connexion
+        
     </div>
     <div *ngIf="(user | async)">
         <p>Type de compte : {{ (user | async)?.accountType }}</p>
@@ -14,7 +14,7 @@
         <div *ngIf="(afAuth.user | async)?.emailVerified == true">
             <p>Vérifié :o</p>
         </div>
-        
+
         <div *ngIf="(afAuth.user | async)?.emailVerified == false">
             <p> Votre adresse mail n'est pas vérifiée :o</p>
         </div>
