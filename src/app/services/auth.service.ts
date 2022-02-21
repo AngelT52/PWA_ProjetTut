@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class AuthService {
 
   userLoggedIn : boolean;
 
-  constructor(private router:Router, private afAuth: AngularFireAuth, private afFirestore : AngularFirestore) { 
+  constructor(private router:Router, private afAuth: AngularFireAuth, private afFirestore : AngularFirestore, private toastr : ToastrService) { 
     this.userLoggedIn = false;
     this.afAuth.onAuthStateChanged((user)=> {
       if (user) {
@@ -69,4 +70,21 @@ export class AuthService {
       })
 
   }
+
+  async sendVerificationMailAgain() {                      
+    return (await this.afAuth.currentUser)!.sendEmailVerification()
+        .then(() => {
+          this.toastr.success('Le mail de vérification d\'email a été envoyé.')
+          this.router.navigate(['/home']);
+        })
+        .catch(error => {
+            console.log('Auth Service: sendVerificationMailAgain erreur');
+            this.toastr.error('Veuillez réassayer un peu plus tard.')
+            console.log('error code', error.code);
+            console.log('error', error);
+            if (error.code)
+                return error;
+        });
+}
+
 }

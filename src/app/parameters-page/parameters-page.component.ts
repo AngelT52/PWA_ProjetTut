@@ -4,7 +4,6 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-parameters-page',
   templateUrl: './parameters-page.component.html',
@@ -27,6 +26,10 @@ export class ParametersPageComponent implements OnInit {
               this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
           }
       });
+  }
+
+  sendMail() {
+    this.authService.sendVerificationMailAgain();
   }
 
 }
