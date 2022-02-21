@@ -21,7 +21,6 @@
                     </svg>
                     <input class="outline-none px-2 h-full py-2 text-lg" type="password" formControlName="password" placeholder="Mot de passe" />
                 </div>
-                <div class="show_info text-sm mb-4 w-max text-red-400"></div>
                 <div class="submit border-2 border-c_green rounded mb-4 bg-c_yellow text-c_green cursor-pointer">
                     <div class="wrapper flex w-max mx-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 my-auto" fill="none" viewBox="0 0 24 24" stroke="#29BB89">
@@ -30,7 +29,12 @@
                         <button class="outline-none px-2 h-full cursor-pointer py-2 text-lg bg-transparent"  value="Me connecter">S'inscrire</button>
                     </div>
                 </div>
+                
             </div>
         </form>
+        <div *ngIf="firebaseErrorMessage != ''" class="block text-xs px-2 py-4 text-c_lightgreen" >
+            <span>{{ firebaseErrorMessage }} </span>
+            <h2 class="text-c_lightgreen text-2xl font-bold p-4">{{ firebaseErrorMessage }} </h2>
+        </div>
     </div>
 </div>

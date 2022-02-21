@@ -19,6 +19,10 @@ export class RegisterPageComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    if(this.authService.userLoggedIn) {
+      this.router.navigate(['/map']);
+    }
+
     this.signupForm = new FormGroup({
       'name' : new FormControl('', Validators.required),
       'email' : new FormControl('', [Validators.required, Validators.email]),

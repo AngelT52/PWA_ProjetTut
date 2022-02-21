@@ -13,12 +13,12 @@
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
-                    <a routerLink='' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Accueil</a>
-                    <a *ngIf="(afAuth.user | async)" routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Suivi de performance</a>
-                    <a *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Suivi de performance</a>
-                    <a *ngIf="(afAuth.user | async)" routerLink='/training' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Entraînements</a>
-                    <a *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Entraînements</a>
-                    <a routerLink='/params' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Paramètres</a>
+                    <a role="button" routerLink='' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Accueil</a>
+                    <a role="button" *ngIf="(afAuth.user | async)" routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Suivi de performance</a>
+                    <a role="button" *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Suivi de performance</a>
+                    <a role="button" *ngIf="(afAuth.user | async)" routerLink='/training' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Entraînements</a>
+                    <a role="button" *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Entraînements</a>
+                    <a role="button" routerLink='/params' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Paramètres</a>
                 </div>
             </div>
             <div  class="md:hidden flex items-center">

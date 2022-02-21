@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class AuthService {
 
   userLoggedIn : boolean;
 
-  constructor(private router:Router, private afAuth: AngularFireAuth) { 
+  constructor(private router:Router, private afAuth: AngularFireAuth, private afFirestore : AngularFirestore) { 
     this.userLoggedIn = false;
     this.afAuth.onAuthStateChanged((user)=> {
       if (user) {
@@ -39,6 +40,17 @@ export class AuthService {
   signupUser(user : any): Promise<any> {
     return this.afAuth.createUserWithEmailAndPassword(user.email,user.password)
         .then((result) => {
+          let emailLower = user.email.toLowerCase();
+
+          this.afFirestore.doc('/users/'+ emailLower)
+            .set({
+              accountType:'classique',
+              displayName: user.name,
+              displayName_lower: user.name.toLowerCase(),
+              email:  user.email,
+              email_lower: emailLower
+            });
+
           result.user?.sendEmailVerification();
         })
         .catch(error => {
