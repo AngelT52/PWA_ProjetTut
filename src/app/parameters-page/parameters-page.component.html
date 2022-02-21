@@ -1,1 +1,30 @@
-<p>parameters-page works!</p>
+<div class="h-screen w-screen text-center bg-c_background">
+
+	<p class="px-4 py-2 text-lg font-bold text-gray-500">
+		Paramètres
+	</p>
+
+    <div *ngIf="!(user | async)">
+        Rajouter paramètres hors connexion
+    </div>
+    <div *ngIf="(user | async)">
+        <p>Type de compte : {{ (user | async)?.accountType }}</p>
+        <p>Votre nom : {{ (user | async)?.displayName }}</p>
+        <p>Email: {{ (user | async)?.email }}</p>
+        <div *ngIf="(afAuth.user | async)?.emailVerified == true">
+            <p>Vérifié :o</p>
+        </div>
+        
+        <div *ngIf="(afAuth.user | async)?.emailVerified == false">
+            <p> Votre adresse mail n'est pas vérifiée :o</p>
+        </div>
+	</div>
+
+
+</div>
+<!-- 
+    Verify Email
+<p *ngIf="!(afAuth.user | async)"></p>
+    <p>A verification email will be sent to <span>{{ (user | async)?.email }}</span>.</p>
+</div>
+-->

@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  
 
   userLoggedIn : boolean;
 
@@ -44,7 +43,7 @@ export class AuthService {
 
           this.afFirestore.doc('/users/'+ emailLower)
             .set({
-              accountType:'classique',
+              accountType:'utilisateur',
               displayName: user.name,
               displayName_lower: user.name.toLowerCase(),
               email:  user.email,
@@ -61,8 +60,5 @@ export class AuthService {
             return {isValid : false, message : error.message};
           else {return;}
         });
-
   }
-
-
 }

@@ -7,6 +7,7 @@ import { ParametersPageComponent } from './parameters-page/parameters-page.compo
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './services/auth.guard';
 import { TrainingComponent } from './training/training.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path:'register', component : RegisterPageComponent},
   { path:'training', component : TrainingComponent, canActivate: [AuthGuard]},
   { path:'params', component : ParametersPageComponent},
+  { path:'verify-email', component : VerifyEmailComponent},
   { path: '**', component: PagenotfoundComponent },
 
   

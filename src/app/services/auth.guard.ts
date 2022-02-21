@@ -15,10 +15,19 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     return new Promise((resolve,reject) => {
       this.afAuth.onAuthStateChanged((user) => {
+
         if(user) {
-          resolve(true)
+
+          if(user.emailVerified)
+            resolve(true)
+          else{
+            this.router.navigate(['/verify-email'])
+          }
+         
+          
         } else {
           console.log('Auth guard : échec connexion, route protégée');
           resolve(false)

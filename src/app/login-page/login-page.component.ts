@@ -46,7 +46,7 @@ export class LoginPageComponent implements OnInit {
   // Pour aller plus viter, a retirer plus tard
   loginGuest() { 
     
-    this.authService.loginUser("guest@guest.fr", "123456").then((result) => {
+    this.authService.loginUser("Thierry.Angel@protonmail.com", "123456789").then((result) => {
       if (result == null) {
         console.log('Utilisateur connecté');
         this.router.navigate(['map']);
