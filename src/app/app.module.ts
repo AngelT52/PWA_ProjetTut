@@ -18,6 +18,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TrainingListComponent } from './training-list/training-list.component';
 import { SingleTrainingComponent } from './single-training/single-training.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -49,6 +50,12 @@ import { SingleTrainingComponent } from './single-training/single-training.compo
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       progressBar: true,
+    }),
+    ServiceWorkerModule.register('./ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [],
