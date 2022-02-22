@@ -16,6 +16,10 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { TrainingListComponent } from './training-list/training-list.component';
+import { SingleTrainingComponent } from './single-training/single-training.component';
+
+
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ParametersPageComponent,
     PagenotfoundComponent,
     VerifyEmailComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    TrainingListComponent,
+    SingleTrainingComponent
   ],
   imports: [
     BrowserModule,

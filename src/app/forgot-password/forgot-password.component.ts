@@ -57,4 +57,20 @@ export class ForgotPasswordComponent implements OnInit {
         });
     }
 
+    sendEmailCheck() {
+      this.authService.resetPassword(this.forgotPasswordForm.value.email).then((result) => {
+          if (result == null) {
+              console.log('Le mail de reset de mdp a été envoyé');
+              this.mailSent = true;
+              this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
+              this.router.navigate(['/home']);
+
+          }
+          else if (result.isValid == false) {
+              console.log('login error', result);
+              this.firebaseErrorMessage = result.message;
+          }
+      });
+  }
+
 }

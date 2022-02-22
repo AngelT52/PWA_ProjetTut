@@ -7,7 +7,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './services/auth.guard';
-import { TrainingComponent } from './training/training.component';
+import { SingleTrainingComponent } from './single-training/single-training.component';
+import { TrainingListComponent } from './training-list/training-list.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path:'home', component: WelcomePageComponent },  
   { path:'map', component : MapComponent, canActivate: [AuthGuard]},
   { path:'register', component : RegisterPageComponent},
-  { path:'training', component : TrainingComponent, canActivate: [AuthGuard]},
+  { path:'trainings', component : TrainingListComponent, canActivate: [AuthGuard]},
+  { path:'trainings/:id', component : SingleTrainingComponent, canActivate: [AuthGuard]},
   { path:'params', component : ParametersPageComponent},
   { path:'verify-email', component : VerifyEmailComponent},
   { path:'reset-password', component : ForgotPasswordComponent},

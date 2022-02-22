@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { WelcomePageComponent } from './welcome-page.component';
 
+import { SingleTrainingComponent } from './single-training.component';
 
-describe('WelcomePageComponent', () => {
-  let component: WelcomePageComponent;
-  let fixture: ComponentFixture<WelcomePageComponent>;
+describe('SingleTrainingComponent', () => {
+  let component: SingleTrainingComponent;
+  let fixture: ComponentFixture<SingleTrainingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WelcomePageComponent ]
+      declarations: [ SingleTrainingComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomePageComponent);
+    fixture = TestBed.createComponent(SingleTrainingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

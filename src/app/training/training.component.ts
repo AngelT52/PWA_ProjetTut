@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Training } from '../models/training-model';
+import { Router } from '@angular/router';
+import { TrainingService } from '../services/training.service';
+
 
 @Component({
   selector: 'app-training',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingComponent implements OnInit {
 
-  constructor() { }
+  @Input() training!: Training;
+  buttonText!: string;
 
-  ngOnInit(): void {
+  constructor(private trainingService: TrainingService, private router : Router) {}
+  
+  ngOnInit() {
   }
 
+  onViewTraining(): void{
+    this.router.navigateByUrl(`trainings/${this.training.id}`);
+
+  }
 }
+
+
+
+

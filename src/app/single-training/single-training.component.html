@@ -1,0 +1,12 @@
+<div class="h-screen w-screen p-20 text-center bg-c_background ">
+    <h3 class="text-c_lightgreen mb-4 text-xl font-bold">
+      <h2>{{ training.title | uppercase }}</h2>
+    </h3>
+    <div class="bg-gray-200 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold mb-2 text-gray-800">Mis en ligne le {{ training.createdDate | date:'medium' }}</h2>
+      <p class="px-4 py-2 text-lg font-bold text-gray-500">{{ training.desc }}</p>
+      <a routerLink="/trainings" class="bg-c_yellow hover:bg-yellow-500 text-black text-center py-2 px-4 rounded">
+        Retour
+      </a>
+    </div>
+</div>
