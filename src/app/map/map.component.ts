@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader'
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-map',
@@ -219,7 +220,7 @@ export class MapComponent implements OnInit {
     });
     })
     let loader = new Loader({
-        apiKey: "add your own"
+        apiKey: environment.googlemap.apiKey
     });
     
     }

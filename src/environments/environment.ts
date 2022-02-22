@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   firebase : {
   // hidded files :), add your own credentials
-  }
+  },
+  googlemap : {
+  // hidded files :), add your own credentials
+    }
 };
 
 /*
