@@ -66,8 +66,16 @@ export class AuthService {
   resetPassword(email :string): Promise<any> {
     return this.afAuth.sendPasswordResetEmail(email)
       .then(() => {
+        this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
         console.log('Auth service : reset de mdp')
       })
+      .catch(error => { 
+        console.log('Auth Service: resetPassword erreur');
+        this.toastr.error('Erreur')
+        console.log('error code', error.code);
+        console.log('error', error);
+        if (error.code)
+          return error;});
 
   }
 

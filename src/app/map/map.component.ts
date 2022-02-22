@@ -2,21 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader'
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-    if(!navigator.geolocation) {
-      console.log('L\'accès a la localisation n\'est pas activée ou n\'est pas possible')
-    }
+    ngOnInit(): void {
+        if(!navigator.geolocation) {
+            console.log('L\'accès a la localisation n\'est pas activée ou n\'est pas possible')
+        }   
+
     navigator.geolocation.getCurrentPosition((position) =>  {
-      console.log(`lat: ${position.coords.latitude}, long: ${position.coords.longitude}`)
-      loader.load().then(() => {
+        console.log(`lat: ${position.coords.latitude}, long: ${position.coords.longitude}`)
+        loader.load().then(() => {
         const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
         center: { lat: position.coords.latitude, lng: position.coords.longitude },
         zoom: 18,
@@ -207,23 +208,19 @@ export class MapComponent implements OnInit {
     }
     
 ]
-      });
-      const myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
-      new google.maps.Marker({
+        });
+        const myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+        new google.maps.Marker({
         position: myLatLng,
         map,
         title: "oh zebi ca marche",
         icon:  "https://media.discordapp.net/attachments/282552629249441792/943595198380912700/outline_directions_bike_black_36dp.png" //add real link and customize icon
-      });
-      
+        });
     });
-
-      
     })
     let loader = new Loader({
-      apiKey: "add your own"
+        apiKey: "add your own"
     });
     
-  }
-
+    }
 }

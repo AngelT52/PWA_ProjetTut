@@ -13,13 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-    mailSent: boolean;
     isProgressVisible: boolean;
     forgotPasswordForm: FormGroup;
     firebaseErrorMessage: string;
 
     constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private toastr: ToastrService) {
-        this.mailSent = false;
         this.isProgressVisible = false;
 
         this.forgotPasswordForm = new FormGroup({
@@ -45,32 +43,32 @@ export class ForgotPasswordComponent implements OnInit {
         this.authService.resetPassword(this.forgotPasswordForm.value.email).then((result) => {
             if (result == null) {
                 console.log('Le mail de reset de mdp a été envoyé');
-                this.mailSent = true;
                 this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
                 this.router.navigate(['/home']);
 
             }
             else if (result.isValid == false) {
                 console.log('login error', result);
+                this.toastr.error('Erreur')
                 this.firebaseErrorMessage = result.message;
             }
         });
     }
 
     sendEmailCheck() {
-      this.authService.resetPassword(this.forgotPasswordForm.value.email).then((result) => {
-          if (result == null) {
-              console.log('Le mail de reset de mdp a été envoyé');
-              this.mailSent = true;
-              this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
-              this.router.navigate(['/home']);
+        this.authService.resetPassword(this.forgotPasswordForm.value.email).then((result) => {
+            if (result == null) {
+                console.log('Le mail de reset de mdp a été envoyé');
+                this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
+                this.router.navigate(['/home']);
 
-          }
-          else if (result.isValid == false) {
-              console.log('login error', result);
-              this.firebaseErrorMessage = result.message;
-          }
-      });
-  }
+            }
+            else if (result.isValid == false) {
+                this.toastr.error('Erreur')
+                console.log('login error', result);
+                this.firebaseErrorMessage = result.message;
+            }
+        });
+    }
 
 }
