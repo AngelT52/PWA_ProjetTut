@@ -1,6 +1,6 @@
-<div class="h-screen w-screen text-center ">
+<div class="h-screen w-screen text-center">
 	<p class="text-c_lightgreen text-2xl font-bold p-4">Bienvenue sur Sport App.</p>
-	<p class="px-4 py-2 text-lg font-bold text-gray-500">
+	<p class="px-8 py-4 text-lg font-bold text-gray-500">
 		Votre application de suivi sportif créé par Thierry Angel pour Moustache Bikes.
 	</p>
 	<div *ngIf="(afAuth.user | async)">
@@ -13,9 +13,5 @@
 	</div>
 	<div *ngIf="!(afAuth.user | async)">
 		<app-login-page></app-login-page>
-		<p class="px-4 py-2 text-md font-bold text-gray-500">
-			Vous n'êtes pas connecté.
-	    </p>
-		<a routerLink='/register' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Pas de compte ? Inscrivez vous, c'est gratuit</a>
 	</div>
 </div>

@@ -15,7 +15,9 @@ module.exports = {
       extend: {
         colors: {
           'c_gray': '#343432',
+          'c_gray_b': '#A0A099',
           'c_green' :'#1E6F5D',
+          'c_green_b' :'#004334',
           'c_lightgreen': '#29BB89',
           'c_yellow':'#DDD53F',
           'c_background':'#BFBFBD'

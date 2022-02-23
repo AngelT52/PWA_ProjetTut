@@ -1,31 +1,28 @@
-<div class="h-screen w-screen text-center ">
 
-	<p class="px-4 py-2 text-lg font-bold text-gray-500">
-		Paramètres
-	</p>
-    <div *ngIf="!(user | async)">
-        
+
+<p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Paramètres</p>
+<div class="p-8 container flex mx-auto w-full items-center justify-center">
+    <div class="flex flex-col bg-gray-300 p-4 rounded-lg">
+        <div *ngIf="!(user | async)">
+            <p>Les paramètres hors connexion sont en cours de construction </p>
+        </div>
+        <div *ngIf="(user | async)">
+            <p>Type de compte : {{ (user | async)?.accountType }}</p>
+            <p>Votre nom : {{ (user | async)?.displayName }}</p>
+            <p>Email: {{ (user | async)?.email }}</p>
+            <div *ngIf="(afAuth.user | async)?.emailVerified == true">
+                <p>Adresse email Vérifié ✔️</p>
+            </div>
+    
+            <div *ngIf="(afAuth.user | async)?.emailVerified == false">
+                <p>Adresse mail non vérifiée ❌ </p>
+                <a role="button" class="px-4 py-8 text-sm font-bold text-c_lightgreen" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
+            </div>
+            <a routerLink="/reset-password" role="button" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Réinitialiser son mot de passe</a>
+            <br>
+            <a routerLink="/home" role="button" (click)="logout()" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Se déconnecter</a>
     </div>
-    <div *ngIf="(user | async)">
-        <p>Type de compte : {{ (user | async)?.accountType }}</p>
-        <p>Votre nom : {{ (user | async)?.displayName }}</p>
-        <p>Email: {{ (user | async)?.email }}</p>
-        <div *ngIf="(afAuth.user | async)?.emailVerified == true">
-            <p>Vérifié :o</p>
-        </div>
-
-        <div *ngIf="(afAuth.user | async)?.emailVerified == false">
-            <p> Votre adresse mail n'est pas vérifiée :o</p>
-            <a role="button" class="px-4 py-2 text-sm font-bold text-c_lightgreen" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
-        </div>
-        <a routerLink="/reset-password" role="button" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Réinitialiser son mot de passe</a>
-	</div>
-
-
 </div>
-<!-- 
-    Verify Email
-<p *ngIf="!(afAuth.user | async)"></p>
-    <p>A verification email will be sent to <span>{{ (user | async)?.email }}</span>.</p>
-</div>
--->
+
+
+

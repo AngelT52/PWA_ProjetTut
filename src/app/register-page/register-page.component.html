@@ -1,40 +1,68 @@
-<div class="h-screen w-screen text-center ">
+<p class="text-c_lightgreen text-2xl font-bold p-4 text-center">Créer votre compte SportApp</p>
     <div class="main w-max m-auto">
-        <form [formGroup]="signupForm" (ngSubmit)="signup()" type="">
-            <div class="login">
-                <h2 class="text-c_lightgreen text-2xl font-bold p-4">M'inscrire</h2>
-                <div class="username flex border rounded text-gray-500 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mx-2 my-auto" fill="none" viewBox="0 0 24 24" stroke="#29BB89">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <input class="outline-none px-2 h-full py-2 text-lg" type="text" formControlName="name" placeholder="Nom" />
+        <div class="block p-6 rounded-lg shadow-lg bg-c_gray max-w-sm">
+                        <h2 class="text-c_lightgreen text-2xl font-bold p-4">M'inscrire</h2>
+            <form [formGroup]="signupForm" (ngSubmit)="signup()" type="">
+
+                <div class="form-group mb-6">
+                    <input type="text" class="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                        placeholder="Nom" formControlName="name">
                 </div>
-                <div class="username flex border rounded text-gray-500 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mx-2 my-auto" fill="none" viewBox="0 0 24 24" stroke="#29BB89">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <input class="outline-none px-2 h-full py-2 text-lg" type="text" formControlName="email" placeholder="Email" />
+
+                <div class="form-group mb-6">
+                    <input type="email" class="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                        placeholder="Adresse email" formControlName="email">
                 </div>
-                <div class="password flex border rounded text-gray-500 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mx-2 my-auto" fill="none" viewBox="0 0 24 24" stroke="#29BB89">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                    </svg>
-                    <input class="outline-none px-2 h-full py-2 text-lg" type="password" formControlName="password" placeholder="Mot de passe" />
+
+                <div class="form-group mb-6">
+                <input type="password" class="form-control block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                    placeholder="Mot de passe" formControlName="password">
                 </div>
-                <div class="submit border-2 border-c_green rounded mb-4 bg-c_yellow text-c_green cursor-pointer">
-                    <div class="wrapper flex w-max mx-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 my-auto" fill="none" viewBox="0 0 24 24" stroke="#29BB89">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                        </svg>
-                        <button class="outline-none px-2 h-full cursor-pointer py-2 text-lg bg-transparent"  value="Me connecter">S'inscrire</button>
-                    </div>
-                </div>
-                
-            </div>
-        </form>
-        <div *ngIf="firebaseErrorMessage != ''" class="block text-xs px-2 py-4 text-c_lightgreen" >
-            <span>{{ firebaseErrorMessage }} </span>
-            <h2 class="text-c_lightgreen text-2xl font-bold p-4">{{ firebaseErrorMessage }} </h2>
+
+                <div>
+                    <button type="submit" class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">S'inscrire</button>
+                    <button routerLink="/home" type="button" class="text-c_green hover:text-white border border-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600">Annuler</button>
+                </div>  
+            </form>
         </div>
     </div>
-</div>
+

@@ -32,4 +32,8 @@ export class ParametersPageComponent implements OnInit {
     this.authService.sendVerificationMailAgain();
   }
 
+  logout():void {
+    this.afAuth.signOut();
+  }
+
 }
