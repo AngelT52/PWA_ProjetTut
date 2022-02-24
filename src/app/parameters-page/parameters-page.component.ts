@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { PwaService } from '../services/pwa.service';
 
 @Component({
   selector: 'app-parameters-page',
@@ -15,7 +16,7 @@ export class ParametersPageComponent implements OnInit {
   user!: Observable<any>;
   email!: string;
 
-  constructor(private authService: AuthService ,public afAuth: AngularFireAuth, private firestore: AngularFirestore, private toastr : ToastrService) {
+  constructor(private authService: AuthService ,public afAuth: AngularFireAuth, private firestore: AngularFirestore, private toastr : ToastrService, public pwa : PwaService) {
       this.user != null;
       this.email = '';
   }
@@ -36,6 +37,10 @@ export class ParametersPageComponent implements OnInit {
   logout():void {
     this.afAuth.signOut();
     this.toastr.success('Déconnexion réussie')
+  }
+
+  installPwa(): void {
+    this.pwa.promptEvent.prompt();
   }
 
 }
