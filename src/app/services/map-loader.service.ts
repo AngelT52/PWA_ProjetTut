@@ -11,7 +11,6 @@ export class MapLoaderService {
   
   
   loadMap(lat : number, long : number) :void {
-
     let loader = new Loader({
       apiKey: environment.googlemap.apiKey
     });
