@@ -14,11 +14,12 @@
                 <p>Adresse email Vérifié ✔️</p>
             </div>
 
-                <p  *ngIf="(afAuth.user | async)?.emailVerified == false" >Adresse mail non vérifiée ❌ </p>
-                <a  *ngIf="(afAuth.user | async)?.emailVerified == false" role="button" class="px-4 py-8 text-sm font-bold text-c_lightgreen" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
-            <a routerLink="/reset-password" role="button" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Réinitialiser son mot de passe</a>
+                <p  *ngIf="(afAuth.user | async)?.emailVerified == false" >Adresse mail non vérifiée ❌</p>
+                <a  *ngIf="(afAuth.user | async)?.emailVerified == false" role="button" class="text-sm font-bold text-c_lightgreen" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
+                <br>
+            <a routerLink="/reset-password" role="button" class="text-sm font-bold text-c_lightgreen">Réinitialiser son mot de passe</a>
             <br>
-            <a routerLink="/home" role="button" (click)="logout()" class="px-4 py-2 text-sm font-bold text-c_lightgreen">Se déconnecter</a>
+            <a routerLink="/home" role="button" (click)="logout()" class="text-sm font-bold text-c_lightgreen">Se déconnecter</a>
     </div>
 </div>
 
