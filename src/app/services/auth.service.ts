@@ -66,7 +66,7 @@ export class AuthService {
   resetPassword(email :string): Promise<any> {
     return this.afAuth.sendPasswordResetEmail(email)
       .then(() => {
-        this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
+        this.toastr.success('Le mail de changement de mot de passe a été envoyé')
         console.log('Auth service : reset de mdp')
       })
       .catch(error => { 
@@ -81,12 +81,12 @@ export class AuthService {
   async sendVerificationMailAgain() {                      
     return (await this.afAuth.currentUser)!.sendEmailVerification()
         .then(() => {
-          this.toastr.success('Le mail de vérification d\'email a été envoyé.')
+          this.toastr.success('Le mail de vérification d\'email a été envoyé')
           this.router.navigate(['/home']);
         })
         .catch(error => {
             console.log('Auth Service: sendVerificationMailAgain erreur');
-            this.toastr.error('Veuillez réassayer un peu plus tard.')
+            this.toastr.error('Veuillez réessayer un peu plus tard.')
             console.log('error code', error.code);
             console.log('error', error);
             if (error.code)
