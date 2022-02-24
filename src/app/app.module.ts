@@ -19,9 +19,16 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { TrainingListComponent } from './training-list/training-list.component';
 import { SingleTrainingComponent } from './single-training/single-training.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ParkourListComponent } from './parkour-list/parkour-list.component';
+import { ParkourComponent } from './parkour/parkour.component';
+import { SingleParkourComponent } from './single-parkour/single-parkour.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
 
 
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -36,7 +43,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     VerifyEmailComponent,
     ForgotPasswordComponent,
     TrainingListComponent,
-    SingleTrainingComponent
+    SingleTrainingComponent,
+    ParkourListComponent,
+    ParkourComponent,
+    SingleParkourComponent
   ],
   imports: [
     BrowserModule,

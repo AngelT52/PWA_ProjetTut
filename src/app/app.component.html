@@ -14,8 +14,8 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
                     <a role="button" routerLink='' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Accueil</a>
-                    <a role="button" *ngIf="(afAuth.user | async)" routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Suivi de performance</a>
-                    <a role="button" *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Suivi de performance</a>
+                    <a role="button" *ngIf="(afAuth.user | async)" routerLink='/map' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Enregistrements & Parcours</a>
+                    <a role="button" *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Enregistrements & Parcours</a>
                     <a role="button" *ngIf="(afAuth.user | async)" routerLink='/trainings' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Entraînements</a>
                     <a role="button" *ngIf="!(afAuth.user | async)"  (click)="notLoggedToaster()" class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300" >Entraînements</a>
                     <a role="button" routerLink='/params' class="py-4 px-2 text-c_lightgreen font-semibold hover:text-c_green transition duration-300">Paramètres</a>
@@ -40,7 +40,7 @@
     <div class="hidden mobile-menu">
         <ul>
             <li><a routerLink='' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Accueil</a></li>
-            <li><a *ngIf="(afAuth.user | async)" routerLink='/map' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Suivi de performance</a></li>
+            <li><a *ngIf="(afAuth.user | async)" routerLink='/map' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Enregistrements & Parcours</a></li>
             <li><a *ngIf="(afAuth.user | async)" routerLink='/trainings' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Entraînements</a></li>
             <li><a routerLink='/params' class="block text-sm px-2 py-4 text-c_lightgreen hover:bg-c_green transition duration-300">Paramètres</a></li>
         </ul>

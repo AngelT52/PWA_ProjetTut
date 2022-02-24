@@ -37,5 +37,4 @@ export class TrainingService {
           return training
       }
   }
-
 }

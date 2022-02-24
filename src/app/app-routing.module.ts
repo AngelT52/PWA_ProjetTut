@@ -5,8 +5,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { MapComponent } from './map/map.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
+import { ParkourListComponent } from './parkour-list/parkour-list.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './services/auth.guard';
+import { SingleParkourComponent } from './single-parkour/single-parkour.component';
 import { SingleTrainingComponent } from './single-training/single-training.component';
 import { TrainingListComponent } from './training-list/training-list.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path:'register', component : RegisterPageComponent},
   { path:'trainings', component : TrainingListComponent, canActivate: [AuthGuard]},
   { path:'trainings/:id', component : SingleTrainingComponent, canActivate: [AuthGuard]},
+  { path:'parkours', component : ParkourListComponent, canActivate: [AuthGuard]},
+  { path:'parkours/:id', component : SingleParkourComponent, canActivate: [AuthGuard]},
   { path:'params', component : ParametersPageComponent},
   { path:'verify-email', component : VerifyEmailComponent},
   { path:'reset-password', component : ForgotPasswordComponent},

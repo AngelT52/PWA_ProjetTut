@@ -1,0 +1,9 @@
+
+<p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Liste de mes parcours enregistrés</p>
+<div class="p-8 container flex mx-auto w-full items-center justify-center">
+    <ul class="flex flex-col bg-c_gray_b p-4 rounded-lg">
+    <app-parkour *ngFor="let parkour of parkours" 
+                    [parkour]="parkour">
+    </app-parkour>
+    </ul>
+</div>

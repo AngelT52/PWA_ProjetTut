@@ -1,5 +1,5 @@
 
-<p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Liste des entraînements</p>
+<p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Liste des entraînements Sport App</p>
 <div class="p-8 container flex mx-auto w-full items-center justify-center">
     <ul class="flex flex-col bg-c_gray_b p-4 rounded-lg">
     <app-training *ngFor="let training of trainings" 
@@ -7,3 +7,14 @@
     </app-training>
     </ul>
 </div>
+
+<p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Liste de vos entraînements</p>
+<div class="p-8 container flex mx-auto w-full items-center justify-center">
+    <ul class="flex flex-col bg-c_gray_b p-4 rounded-lg">
+    <app-training *ngFor="let training of trainings" 
+                    [training]="training">
+    </app-training>
+    </ul>
+</div>
+
+

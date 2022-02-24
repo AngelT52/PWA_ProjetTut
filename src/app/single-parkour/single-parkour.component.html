@@ -1,0 +1,13 @@
+<div class="w-full p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-20 absolute text-center">
+    <h3 class="text-c_lightgreen mb-4 text-xl font-bold">
+        <h2>Enregistrement du {{parkour.recordedDate | date:'short':'+02:00':'fr'}}</h2>
+    </h3>
+    <div class="bg-gray-200 p-6 rounded-lg shadow-lg">
+        <div class="h-screen max-h-xs" id="map">
+        </div>
+        
+    </div>
+    <br>
+    <button routerLink="/trainings"  class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Retour</button>
+</div>
+
