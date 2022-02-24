@@ -16,6 +16,6 @@ export class WelcomePageComponent implements OnInit {
 
   logout():void {
     this.afAuth.signOut();
-    this.toastr.error('Déconnexion réussie')
+    this.toastr.success('Déconnexion réussie')
   }
 }
