@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
 
   loginUser() {
     if(this.loginForm.invalid) 
-      return;
+      this.toastr.error('Veuillez correctement remplir le formulaire svp')
     
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
       if (result == null) {
@@ -37,7 +37,8 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(['map']);
       }
       else if (result.isValid == false) {
-        this.toastr.error('Identifiants incorrects')
+        if(this.loginForm.valid) 
+          this.toastr.error('Identifiants incorrects')
         console.log('Erreur de connexion', result);
         this.firebaseErrorMessage = result.message ;
 

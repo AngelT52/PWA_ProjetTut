@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-welcome-page',
@@ -8,12 +9,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
 
   logout():void {
     this.afAuth.signOut();
+    this.toastr.error('Déconnexion réussie')
   }
 }

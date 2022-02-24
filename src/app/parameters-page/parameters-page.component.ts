@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -14,7 +15,7 @@ export class ParametersPageComponent implements OnInit {
   user!: Observable<any>;
   email!: string;
 
-  constructor(private authService: AuthService ,public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(private authService: AuthService ,public afAuth: AngularFireAuth, private firestore: AngularFirestore, private toastr : ToastrService) {
       this.user != null;
       this.email = '';
   }
@@ -34,6 +35,7 @@ export class ParametersPageComponent implements OnInit {
 
   logout():void {
     this.afAuth.signOut();
+    this.toastr.success('Déconnexion réussie')
   }
 
 }

@@ -71,7 +71,6 @@ export class AuthService {
       })
       .catch(error => { 
         console.log('Auth Service: resetPassword erreur');
-        this.toastr.error('Erreur')
         console.log('error code', error.code);
         console.log('error', error);
         if (error.code)
