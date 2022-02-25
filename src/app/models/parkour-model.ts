@@ -3,4 +3,5 @@ export class Parkour {
     recordedDate!: Date;
     lat !: number;
     long !: number;
+    parkourPos !: Array<any>
 }

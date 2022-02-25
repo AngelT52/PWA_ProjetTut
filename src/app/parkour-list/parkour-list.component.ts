@@ -10,10 +10,10 @@ import { ParkourService } from '../services/parkour.service';
 export class ParkourListComponent implements OnInit {
   
   parkours!: Parkour[];
-  constructor(private trainingService: ParkourService) { }
+  constructor(private parkourService: ParkourService) { }
 
   ngOnInit(): void {
-    this.parkours = this.trainingService.getAllParkours();
+    this.parkours = this.parkourService.getAllParkours();
   }
 
 }

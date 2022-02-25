@@ -21,7 +21,7 @@ export class MapComponent implements OnInit {
         }   
         
         navigator.geolocation.getCurrentPosition((position) =>  {
-            this.mapLoader.loadMap(position.coords.latitude, position.coords.longitude);
+           this.mapLoader.loadMap(position.coords.latitude, position.coords.longitude);
         });
     }
     

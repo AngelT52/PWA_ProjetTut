@@ -18,7 +18,7 @@ export class SingleParkourComponent implements OnInit {
   ngOnInit() {
     const parkourId = +this.route.snapshot.params['id']
     this.parkour = this.parkourService.getParkourById(parkourId);
-    this.mapLoader.loadMap(this.parkour.lat,this.parkour.long);
+    this.mapLoader.loadMapParkour(this.parkour.parkourPos);
   }
 
 }
