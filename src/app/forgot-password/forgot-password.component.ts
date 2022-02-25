@@ -40,19 +40,8 @@ export class ForgotPasswordComponent implements OnInit {
     retrievePassword() {
         if (this.forgotPasswordForm.invalid)
             this.toastr.error('Renseignez votre email svp')
-        this.authService.resetPassword(this.forgotPasswordForm.value.email).then((result) => {
-            if (result == null) {
-                console.log('Le mail de reset de mdp a été envoyé');
-                this.toastr.success('Le mail de changement de mot de passe a été envoyé.')
-                this.router.navigate(['/home']);
-
-            }
-            else if (result.isValid == false) {
-                console.log('login error', result);
-                this.toastr.success('Il y a un problème, merci de réessayer plus tard.')
-                this.firebaseErrorMessage = result.message;
-            }
-        });
+        this.authService.resetPassword(this.forgotPasswordForm.value.email);
+        this.router.navigate(['/home']);
     }
 
 }
