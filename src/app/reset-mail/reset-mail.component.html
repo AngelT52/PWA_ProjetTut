@@ -1,0 +1,38 @@
+
+<div class="h-screen w-screen text-center">
+    <p class="text-c_lightgreen text-2xl font-bold p-4 text-center">
+        Changement d'adresse email
+    </p>
+
+    <p class="px-8 py-4 text-lg font-bold text-gray-500">
+        Êtes vous sûr de vouloir réinitialiser votre mot de passe ?
+    </p>
+    <div class="main w-max m-auto">
+        <div class="block p-6 rounded-lg shadow-lg bg-c_gray max-w-sm">
+            
+            <form [formGroup]="changeMailForm" (ngSubmit)="changeMail()" type="">
+            <div class="form-group mb-6">
+                <input type="email" class="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                placeholder="Adresse email" formControlName="email">
+            </div>
+            <div>
+                <button type="submit" class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Confirmer</button>
+                <button routerLink="/params" type="button" class="text-c_green hover:text-white border border-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600">Annuler</button>
+            </div>
+        </form>
+        
+    </div>  
+</div>

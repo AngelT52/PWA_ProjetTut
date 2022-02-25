@@ -7,6 +7,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParametersPageComponent } from './parameters-page/parameters-page.component';
 import { ParkourListComponent } from './parkour-list/parkour-list.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { ResetMailComponent } from './reset-mail/reset-mail.component';
 import { AuthGuard } from './services/auth.guard';
 import { SingleParkourComponent } from './single-parkour/single-parkour.component';
 import { SingleTrainingComponent } from './single-training/single-training.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path:'parkours/:id', component : SingleParkourComponent, canActivate: [AuthGuard]},
   { path:'params', component : ParametersPageComponent},
   { path:'verify-email', component : VerifyEmailComponent},
+  { path:'reset-email', component : ResetMailComponent},
   { path:'reset-password', component : ForgotPasswordComponent},
   { path: '**', component: PagenotfoundComponent },
 

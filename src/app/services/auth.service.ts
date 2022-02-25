@@ -8,18 +8,18 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-
   userLoggedIn : boolean;
-
+  userMailLower: string | null = "";
   constructor(private router:Router, private afAuth: AngularFireAuth, private afFirestore : AngularFirestore, private toastr : ToastrService) { 
     this.userLoggedIn = false;
-    this.afAuth.onAuthStateChanged((user)=> {
-      if (user) {
-        this.userLoggedIn = true ;
-      } else {
-        this.userLoggedIn = false ;
-      }
-    });
+      this.afAuth.onAuthStateChanged((user)=> {
+        if (user) {
+          this.userLoggedIn = true ;
+          this.userMailLower = user.email
+        } else {
+          this.userLoggedIn = false ;
+        }
+      });
   }
 
   loginUser(email : string, password : string): Promise<any> {
@@ -76,9 +76,6 @@ export class AuthService {
         console.log('error', error);
         if (error.code)
           return error;});
-
-      
-
   }
 
   async sendVerificationMailAgain() {                      
@@ -95,6 +92,42 @@ export class AuthService {
             if (error.code)
                 return error;
         });
-}
+  }
+
+  // async reauthenticateUserAgain() {         
+  //   const credentials = this.afAuth.get
+  //   return (await this.afAuth.currentUser)!.reauthenticateWithCredential('e',"e")
+  //       .then(() => {
+    
+  //       })
+  //       .catch(error => {
+  //           console.log('Auth Service: sendVerificationMailAgain erreur');
+  //           this.toastr.error('Veuillez réessayer un peu plus tard.')
+  //           console.log('error code', error.code);
+  //           console.log('error', error);
+  //           if (error.code)
+  //               return error;
+  //       });
+  // }
+
+  async updateEmail(email : string) {                     
+    if(this.userMailLower?.toLowerCase() !== "thierry.angel@protonmail.com"){
+      return (await this.afAuth.currentUser)!.updateEmail(email)
+      .then(() => {
+        this.toastr.success('L\'adresse email a bien été changée.')
+        this.router.navigate(['/home']);
+      })
+      .catch(error => {
+          console.log('Auth Service: Erreur changement mail');
+          this.toastr.error('Veuillez réessayer un peu plus tard.' + error.code)
+          if (error.code)
+              return error;
+      });
+    }
+    else {
+      this.toastr.error('Désactivé sur le compte invité');
+    }
+    
+  }
 
 }

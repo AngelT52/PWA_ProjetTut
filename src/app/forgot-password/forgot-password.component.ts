@@ -13,12 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-    isProgressVisible: boolean;
     forgotPasswordForm: FormGroup;
     firebaseErrorMessage: string;
 
     constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth, private toastr: ToastrService) {
-        this.isProgressVisible = false;
 
         this.forgotPasswordForm = new FormGroup({
             'email': new FormControl('', [Validators.required, Validators.email])
