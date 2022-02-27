@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
 export class AuthService {
   userLoggedIn : boolean;
   userMailLower: string | null = "";
+  userUid: string | null = "";
   constructor(private router:Router, private afAuth: AngularFireAuth, private afFirestore : AngularFirestore, private toastr : ToastrService) { 
     this.userLoggedIn = false;
       this.afAuth.onAuthStateChanged((user)=> {
         if (user) {
           this.userLoggedIn = true ;
-          this.userMailLower = user.email
+          this.userMailLower = user.email ;
+          this.userUid = user.uid ;
         } else {
           this.userLoggedIn = false ;
         }
@@ -42,13 +44,13 @@ export class AuthService {
         .then((result) => {
           let emailLower = user.email.toLowerCase();
 
-          this.afFirestore.doc('/users/'+ emailLower)
+          this.afFirestore.doc('/users/'+ this.userUid)
             .set({
-              accountType:'utilisateur',
               displayName: user.name,
               displayName_lower: user.name.toLowerCase(),
               email:  user.email,
-              email_lower: emailLower
+              email_lower: emailLower,
+              uid: this.userUid,
             });
 
           result.user?.sendEmailVerification();
@@ -114,6 +116,11 @@ export class AuthService {
     if(this.userMailLower?.toLowerCase() !== "thierry.angel@protonmail.com"){
       return (await this.afAuth.currentUser)!.updateEmail(email)
       .then(() => {
+        this.afFirestore.doc('/users/'+ this.userUid)
+            .update({
+              email: email,
+              email_lower: email.toLowerCase()
+            });
         this.toastr.success('L\'adresse email a bien été changée.')
         this.router.navigate(['/home']);
       })

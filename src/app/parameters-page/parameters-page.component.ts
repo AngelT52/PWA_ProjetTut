@@ -25,7 +25,7 @@ export class ParametersPageComponent implements OnInit {
       this.afAuth.authState.subscribe(user => {
           if (user) {
               let emailLower = user.email?.toLowerCase();
-              this.user = this.firestore.collection('users').doc(emailLower).valueChanges();
+              this.user = this.firestore.collection('users').doc(user.uid).valueChanges();
           }
       });
   }

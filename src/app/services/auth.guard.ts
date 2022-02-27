@@ -21,12 +21,12 @@ export class AuthGuard implements CanActivate {
 
         if(user) {
 
-          if(user.emailVerified)
+          if(user.emailVerified){
             resolve(true)
+          }
           else{
             this.router.navigate(['/verify-email'])
           }
-         
           
         } else {
           console.log('Auth guard : échec connexion, route protégée');

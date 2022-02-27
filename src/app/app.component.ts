@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   title = 'sport-app';
 
   notLoggedToaster(){
-    this.toastr.warning('Veuillez vous connecter svp.');
+    this.toastr.warning('Veuillez vous connecter svp');
   }
 
   
