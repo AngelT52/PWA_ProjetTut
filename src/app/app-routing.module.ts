@@ -11,6 +11,7 @@ import { ResetMailComponent } from './reset-mail/reset-mail.component';
 import { AuthGuard } from './services/auth.guard';
 import { SingleParkourComponent } from './single-parkour/single-parkour.component';
 import { SingleTrainingComponent } from './single-training/single-training.component';
+import { TrainingFormComponent } from './training-form/training-form.component';
 import { TrainingListComponent } from './training-list/training-list.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path:'params', component : ParametersPageComponent},
   { path:'verify-email', component : VerifyEmailComponent},
   { path:'reset-email', component : ResetMailComponent},
+  { path:'add-training', component : TrainingFormComponent},
   { path:'reset-password', component : ForgotPasswordComponent},
   { path: '**', component: PagenotfoundComponent },
 

@@ -1,0 +1,66 @@
+<p class="text-c_lightgreen text-2xl font-bold p-4 text-center">Entraînements</p>
+    <div class="main w-max m-auto">
+        <div class="block p-6 rounded-lg shadow-lg bg-c_gray max-w-xs sm:max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl">
+                <h2 class="text-c_lightgreen text-2xl font-bold p-4">Ajouter mon propre entraînement</h2>
+            <form [formGroup]="trainingForm" (ngSubmit)="addTraining()" type="">
+
+                <div class="form-group mb-6">
+                    <input type="text" class="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                        placeholder="Titre" formControlName="title">
+                </div>
+
+                <div class="form-group mb-6">
+                    <input type="text" class="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none"
+                        placeholder="Catégorie" formControlName="category">
+                </div>
+
+                <div class="form-group mb-6">
+                        <textarea class="form-control block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-c_lightgreen focus:outline-none" formControlName="content" placeholder="Contenu de votre entraînement"></textarea>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <button type="submit" class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ajouter</button>   
+                    <button routerLink="/trainings" type="button" class="text-c_green hover:text-white border border-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600">Annuler</button>                     
+                </div>  
+            </form>
+        </div>
+    </div>
+

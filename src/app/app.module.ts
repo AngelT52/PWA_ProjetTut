@@ -25,6 +25,7 @@ import { SingleParkourComponent } from './single-parkour/single-parkour.componen
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { ResetMailComponent } from './reset-mail/reset-mail.component';
+import { TrainingFormComponent } from './training-form/training-form.component';
 
 
 
@@ -48,7 +49,8 @@ registerLocaleData(localeFr, 'fr');
     ParkourListComponent,
     ParkourComponent,
     SingleParkourComponent,
-    ResetMailComponent
+    ResetMailComponent,
+    TrainingFormComponent
   ],
   imports: [
     BrowserModule,

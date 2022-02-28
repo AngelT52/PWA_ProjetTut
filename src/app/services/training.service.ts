@@ -1,33 +1,57 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Parkour } from '../models/parkour-model';
 import { Training } from '../models/training-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingService {
-  trainings: Training[] = [
-    {
-        id: 1,
-        title:'Entraînement Course',
-        desc:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sollicitudin, leo nec interdum consequat, magna est venenatis sapien, eget pharetra elit lacus ac elit. Sed tellus libero, gravida vel velit sit amet, congue interdum ex. Phasellus eros felis, cursus vel mauris eget, ullamcorper egestas tortor. Cras id leo non purus rutrum vehicula nec molestie metus. Nam eu pharetra libero, a finibus nisi. Suspendisse vehicula dignissim lorem, et fringilla ante placerat et. Vestibulum at rhoncus felis. Morbi id facilisis dolor. Aenean augue diam, blandit id tincidunt pharetra, vulputate eu dolor. Nunc euismod orci eros, a commodo sapien tempus id. Phasellus purus neque, aliquet in imperdiet finibus, auctor non metus. Phasellus porttitor commodo quam id aliquam.',
-        createdDate: new Date()
-    },
-    {
-        id: 2,
-        title:'Entraînement Vélo',
-        desc:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sollicitudin, leo nec interdum consequat, magna est venenatis sapien, eget pharetra elit lacus ac elit. Sed tellus libero, gravida vel velit sit amet, congue interdum ex. Phasellus eros felis, cursus vel mauris eget, ullamcorper egestas tortor. Cras id leo non purus rutrum vehicula nec molestie metus. Nam eu pharetra libero, a finibus nisi. Suspendisse vehicula dignissim lorem, et fringilla ante placerat et. Vestibulum at rhoncus felis. Morbi id facilisis dolor. Aenean augue diam, blandit id tincidunt pharetra, vulputate eu dolor. Nunc euismod orci eros, a commodo sapien tempus id. Phasellus purus neque, aliquet in imperdiet finibus, auctor non metus. Phasellus porttitor commodo quam id aliquam.',
-        createdDate: new Date(),
-    },
-    {
-        id: 3,
-        title:'Entraînement Fitness',
-        desc:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sollicitudin, leo nec interdum consequat, magna est venenatis sapien, eget pharetra elit lacus ac elit. Sed tellus libero, gravida vel velit sit amet, congue interdum ex. Phasellus eros felis, cursus vel mauris eget, ullamcorper egestas tortor. Cras id leo non purus rutrum vehicula nec molestie metus. Nam eu pharetra libero, a finibus nisi. Suspendisse vehicula dignissim lorem, et fringilla ante placerat et. Vestibulum at rhoncus felis. Morbi id facilisis dolor. Aenean augue diam, blandit id tincidunt pharetra, vulputate eu dolor. Nunc euismod orci eros, a commodo sapien tempus id. Phasellus purus neque, aliquet in imperdiet finibus, auctor non metus. Phasellus porttitor commodo quam id aliquam.',
-        createdDate: new Date(),
-    }];
-
-  getAllTrainings(): Training[] {
-      return this.trainings;
+  userLoggedIn : boolean;
+  userMailLower: string | null = "";
+  userUid: string | null = "";
+  constructor(private afFirestore : AngularFirestore, private afAuth: AngularFireAuth,) {
+    this.userLoggedIn = false;
+    this.afAuth.onAuthStateChanged((user)=> {
+      if (user) {
+        this.userLoggedIn = true ;
+        this.userMailLower = user.email ;
+        this.userUid = user.uid ;
+      } else {
+        this.userLoggedIn = false ;
+      }
+    });
   }
+  
+  trainings: Training[] = [];
+    
+  toDateTime(secs : any) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+}
+  getAllTrainings(): Training[]  {
+    var i = 0
+    this.trainings = []
+    let trainings = this.afFirestore.firestore.doc('/users/'+ this.userUid).collection('trainings');
+    trainings.get().then((querySnapshot) => { 
+      querySnapshot.forEach((doc) => {
+        i += 1
+        this.trainings.push({
+          id: i,
+          title: [doc.data()][0]['title'],
+          desc: [doc.data()][0]['content'],
+          category: [doc.data()][0]['category'],
+          createdDate : this.toDateTime([doc.data()][0]['recordedDate']),
+          uid: doc.id
+        })
+        
+    })
+      
+  })
+  return this.trainings
+}
 
   getTrainingById(TrainingId: number): Training {
     const training = this.trainings.find(training => training.id === TrainingId)
@@ -37,4 +61,12 @@ export class TrainingService {
           return training
       }
   }
+
+  uploadTraining(training : any) :void {
+    this.afFirestore.doc('/users/'+ this.userUid).collection('trainings').add({title : training.title, content : training.content, category : training.category, recordedDate : new Date()})
+  }
+
+  deleteTraining(training : any ) :void {
+    this.afFirestore.doc('/users/'+ this.userUid).collection('trainings').doc(training).delete();
+}
 }

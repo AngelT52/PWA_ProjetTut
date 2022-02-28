@@ -15,9 +15,11 @@ export class TrainingListComponent implements OnInit {
   constructor(private trainingService: TrainingService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
+    this.trainings = [] as Training[];
     this.trainings = this.trainingService.getAllTrainings();
   }
   onViewCustomTraining() : void {
     this.toastr.info('En cours de réalisation')
   }
+
 }
