@@ -18,8 +18,4 @@ export class TrainingListComponent implements OnInit {
     this.trainings = [] as Training[];
     this.trainings = this.trainingService.getAllTrainings();
   }
-  onViewCustomTraining() : void {
-    this.toastr.info('En cours de réalisation')
-  }
-
 }

@@ -61,17 +61,8 @@ export class ParkourService {
       }
   }
 
-  uploadTestParkour() :void {
-    this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').add({recordedDate : new Date(), lat : 48.29054979753901 , long: 6.942273378372175, parkourPos : [
-      { lat: 48.29054979753901, lng: 6.942273378372175 },
-      { lat: 48.2907497858056, lng: 6.942914426326734 },
-      { lat: 48.29177090721654, lng: 6.939843297004682 },
-      { lat: 48.292731110786285, lng: 6.934492290019971 },
-      { lat: 48.29191032690624, lng: 6.9319146871566595 },
-      { lat: 48.290807562526524, lng: 6.933950483798963 },
-      { lat: 48.29058314756089, lng: 6.934712231159192 },
-      { lat: 48.28962346130315, lng: 6.937142312526685 }
-    ]})
+  uploadTestParkour(parkour : any ) :void {
+    this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').add({recordedDate : new Date(), lat : parkour.lat , long: parkour.lat, parkourPos : parkour.parkourPos})
   }
 
   uploadParkour() :void {
