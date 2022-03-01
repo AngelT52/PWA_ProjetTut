@@ -2,6 +2,10 @@
 <p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Liste de mes parcours enregistrés</p>
 <div class="p-8 container flex mx-auto w-full items-center justify-center">
     <ul class="flex flex-col bg-c_gray_b p-4 rounded-lg">
+        <button type="button" (click)="uploadTestParkour()" class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Ajouter parcours de test</button>
+        <div class="text-center" *ngIf="parkours.length == 0">
+            <p class="text-c_green text-2xl font-bold p-4">Vous n'avez pas de parcours enregistré.</p>
+        </div>
     <app-parkour *ngFor="let parkour of parkours" 
                     [parkour]="parkour">
     </app-parkour>

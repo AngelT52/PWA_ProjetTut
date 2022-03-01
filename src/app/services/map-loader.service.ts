@@ -223,7 +223,8 @@ loadMapParkour(parkourPos : Array<any>) :void {
     let loader = new Loader({
         apiKey: environment.googlemap.apiKey
     });
-    
+        console.log(parkourPos[0])
+        console.log(parkourPos)
         loader.load().then(() => {
         const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
         center: parkourPos[0],
@@ -422,6 +423,8 @@ loadMapParkour(parkourPos : Array<any>) :void {
         map,
         title: "Début du parcours",
         });
+        console.log(parkourPos[0])
+        console.log(parkourPos)
 
         new google.maps.Marker({
             position: parkourPos[parkourPos.length-1],

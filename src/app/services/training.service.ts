@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Parkour } from '../models/parkour-model';
 import { Training } from '../models/training-model';
 
 @Injectable({
@@ -43,7 +42,7 @@ export class TrainingService {
           title: [doc.data()][0]['title'],
           desc: [doc.data()][0]['content'],
           category: [doc.data()][0]['category'],
-          createdDate : this.toDateTime([doc.data()][0]['recordedDate']),
+          createdDate : this.toDateTime([doc.data()][0]['recordedDate']['seconds']),
           uid: doc.id
         })
         
@@ -66,7 +65,7 @@ export class TrainingService {
     this.afFirestore.doc('/users/'+ this.userUid).collection('trainings').add({title : training.title, content : training.content, category : training.category, recordedDate : new Date()})
   }
 
-  deleteTraining(training : any ) :void {
-    this.afFirestore.doc('/users/'+ this.userUid).collection('trainings').doc(training).delete();
+  deleteTraining(trainingId : any ) :void {
+    this.afFirestore.doc('/users/'+ this.userUid).collection('trainings').doc(trainingId).delete();
 }
 }

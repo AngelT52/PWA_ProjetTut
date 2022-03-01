@@ -4,4 +4,5 @@ export class Parkour {
     lat !: number;
     long !: number;
     parkourPos !: Array<any>
+    uid !: any
 }

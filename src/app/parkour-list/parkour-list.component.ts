@@ -15,5 +15,11 @@ export class ParkourListComponent implements OnInit {
   ngOnInit(): void {
     this.parkours = this.parkourService.getAllParkours();
   }
-
+  uploadParkour() : void {
+    this.parkourService.uploadParkour();
+  }
+  uploadTestParkour() : void {
+    this.parkourService.uploadTestParkour();
+    this.parkours = this.parkourService.getAllParkours();
+  }
 }
