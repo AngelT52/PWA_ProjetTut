@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader'
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { Parkour } from '../models/parkour-model';
 import { MapLoaderService } from '../services/map-loader.service';
 import { ParkourService } from '../services/parkour.service';
 
@@ -13,10 +14,15 @@ import { ParkourService } from '../services/parkour.service';
 export class MapComponent implements OnInit {
     map!: google.maps.Map;
     marker: google.maps.Marker[] = [];
+    refreshId: any;
+    recordData!: any[];
+    parkour!: any[] ;
+
     constructor(private toastr : ToastrService, private mapLoader: MapLoaderService, private parkourService : ParkourService) { 
     }
-    parkour!: any ;
     ngOnInit(): void {
+        this.parkour = []
+        this.recordData = []
         let loader = new Loader({
             apiKey: environment.googlemap.apiKey
         });
@@ -235,19 +241,42 @@ export class MapComponent implements OnInit {
     }
     
     recordParkour() : void{
-        this.toastr.info('En cours d\'implémentation');
-        this.parkourService.uploadTestParkour(this.parkour);
-
-        navigator.geolocation.getCurrentPosition((position) =>  {
-                this.mapLoader.loadMap(position.coords.latitude, position.coords.longitude);
-            });
+        const stopbtn = document.getElementById("stop-button");
+        const recordbtn = document.getElementById("record-button");
+        recordbtn?.classList.toggle("hidden");
+        stopbtn?.classList.toggle("hidden");
+        this.refreshId = setInterval(() => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.recordData.push({
+                    lat: position.coords.latitude,
+                    long:position.coords.longitude
+                })
+            })
+        },3000)
     }
-    
+
+    stopRecord():any {
+        const stopbtn = document.getElementById("stop-button");
+        const recordbtn = document.getElementById("record-button");
+        recordbtn?.classList.toggle("hidden");
+        stopbtn?.classList.toggle("hidden");
+        clearInterval(this.refreshId);
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.parkour.push({
+                lat: position.coords.latitude,
+                long: position.coords.longitude,
+                parkourPos : this.recordData})
+        })
+        console.log((this.parkour)[0])
+      //  console.log(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
+      //  this.parkourService.uploadTestParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
+    }
+
     focusMap() : void{ 
         navigator.geolocation.getCurrentPosition((position) =>  {
         var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.map.panTo(center);
         })
-
         }
 }
