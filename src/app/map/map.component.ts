@@ -13,15 +13,33 @@ import { ParkourService } from '../services/parkour.service';
 })
 export class MapComponent implements OnInit {
     map!: google.maps.Map;
-    marker: google.maps.Marker[] = [];
+    marker: any
     refreshId: any;
     recordData: any[] = [];
-    parkour: any[] = [] ;
-
+    parkour!: any[]  ;
+    isRecording!: boolean;
     constructor(private toastr : ToastrService, private mapLoader: MapLoaderService, private parkourService : ParkourService) { 
+
     }
     ngOnInit(): void {
-        
+        setInterval(() => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                var i =0
+                const uluru = { lat: position.coords.latitude, lng: position.coords.longitude + i };
+                    this.marker = new google.maps.Marker({
+                    position: uluru,
+                    map: this.map,
+                    icon: "https://thierry-angel.fr/img/biker.png"
+                    });
+                    i+= 0,7
+                    setInterval(() => {
+                        this.marker.setMap(null)
+                    },1000)
+            })
+        },1000)
+
+        this.parkour= [];
+        this.isRecording= false;
         let loader = new Loader({
             apiKey: environment.googlemap.apiKey
         });
@@ -240,10 +258,7 @@ export class MapComponent implements OnInit {
     }
     
     recordParkour() : void{
-        const stopbtn = document.getElementById("stop-button");
-        const recordbtn = document.getElementById("record-button");
-        recordbtn?.classList.toggle("hidden");
-        stopbtn?.classList.toggle("hidden");
+        this.isRecording= true;
         this.refreshId = setInterval(() => {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.recordData.push({
@@ -255,10 +270,7 @@ export class MapComponent implements OnInit {
     }
 
     stopRecord(): void {
-        const stopbtn = document.getElementById("stop-button");
-        const recordbtn = document.getElementById("record-button");
-        recordbtn?.classList.toggle("hidden");
-        stopbtn?.classList.toggle("hidden");
+        this.isRecording= false;
         clearInterval(this.refreshId);
 
         navigator.geolocation.getCurrentPosition((position) => {
@@ -267,14 +279,13 @@ export class MapComponent implements OnInit {
                 long: position.coords.longitude,
                 parkourPos : this.recordData})
         })
-        console.log((this.parkour)[0])
-        this.parkourService.uploadTestParkour(parseFloat(this.parkour[0]['lat']),parseFloat(this.parkour[0]['long']),this.parkour[0]['parkourPos'])
+        this.parkourService.uploadTestParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
     }
 
-    focusMap() : void{ 
+    focusMap() : void { 
         navigator.geolocation.getCurrentPosition((position) =>  {
         var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.map.panTo(center);
         })
-        }
+    }
 }

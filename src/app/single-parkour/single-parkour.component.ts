@@ -20,7 +20,6 @@ export class SingleParkourComponent implements OnInit {
   ngOnInit() {
     const parkourId = +this.route.snapshot.params['id']
     this.parkour = this.parkourService.getParkourById(parkourId);
-    console.log(this.parkour)
     this.mapLoader.loadMapParkour(this.parkour.parkourPos);
     this.deleteId = this.parkourService.getParkourById(parkourId).uid;
   }

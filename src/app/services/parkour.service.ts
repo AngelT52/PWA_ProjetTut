@@ -10,6 +10,7 @@ export class ParkourService {
   userUid: string | null = "";
   userLoggedIn : boolean;
   constructor(private afFirestore : AngularFirestore, private afAuth: AngularFireAuth,) {
+
     this.userLoggedIn = false;
     this.afAuth.onAuthStateChanged((user)=> {
       if (user) {

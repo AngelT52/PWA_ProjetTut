@@ -435,7 +435,6 @@ loadMapParkour(parkourPos : Array<any>) :void {
             title: "Fin du parcours",
             });
 
-         
         const flightPath = new google.maps.Polyline({
         path: this.parkourpath,
         geodesic: true,
