@@ -16,8 +16,9 @@ export class MapComponent implements OnInit {
     marker: any
     refreshId: any;
     recordData: any[] = [];
-    parkour!: any[]  ;
+    parkour: any[] = [] ;
     isRecording!: boolean;
+
     constructor(private toastr : ToastrService, private mapLoader: MapLoaderService, private parkourService : ParkourService) { 
 
     }
@@ -236,11 +237,8 @@ export class MapComponent implements OnInit {
                 
                 ]
                     })
-                    
-                
-                    const uluru = { lat: position.coords.latitude, lng: position.coords.longitude };
                     const marker = new google.maps.Marker({
-                    position: uluru,
+                    position: { lat: position.coords.latitude, lng: position.coords.longitude },
                     map: this.map,
                     icon: "https://thierry-angel.fr/img/biker.png"
                     });
@@ -251,35 +249,48 @@ export class MapComponent implements OnInit {
         if(!navigator.geolocation) {
             this.toastr.error('L\'accès a la localisation n\'est pas activé')
         }   
+
         navigator.geolocation.getCurrentPosition((position) =>  {
             this.map = this.mapLoader.loadMap(position.coords.latitude, position.coords.longitude);
         });
 
     }
     
-    recordParkour() : void{
+    recordParkour() : void { 
+        navigator.geolocation.getCurrentPosition((position) => {
+            
         this.isRecording= true;
-        this.refreshId = setInterval(() => {
-            navigator.geolocation.getCurrentPosition((position) => {
-                this.recordData.push({
-                    lat: position.coords.latitude,
-                    long:position.coords.longitude
-                })
-            })
-        },3000)
-    }
+        this.recordData.push({
+            lat: position.coords.latitude,
+            long:position.coords.longitude
+        })
 
+        this.refreshId = setInterval(() => {
+            this.recordData.push({
+            lat: position.coords.latitude,
+                long:position.coords.longitude
+            })
+            
+        },3000)
+        })
+    }
+    
     stopRecord(): void {
         this.isRecording= false;
-        clearInterval(this.refreshId);
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.parkour.push({
-                lat: position.coords.latitude,
-                long: position.coords.longitude,
-                parkourPos : this.recordData})
+        clearInterval(this.refreshId);
+        this.parkour.push({
+            lat: this.recordData[0]['lat'],
+            long: this.recordData[0]['long'],
+            parkourPos : this.recordData
         })
-        this.parkourService.uploadTestParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
+
+        if(this.parkour.length > 9){
+            this.parkourService.uploadParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
+            this.toastr.success('Parcours enregistré avec succès')
+        }
+        else
+            this.toastr.error('Veuillez enregistrer pendant 30 secondes minimum')
     }
 
     focusMap() : void { 

@@ -18,7 +18,8 @@ export class AuthService {
           this.userLoggedIn = true ;
           this.userMailLower = user.email ;
           this.userUid = user.uid ;
-        } else {
+        } 
+        else {
           this.userLoggedIn = false ;
         }
       });
@@ -121,12 +122,12 @@ export class AuthService {
               email: email,
               email_lower: email.toLowerCase()
             });
-        this.toastr.success('L\'adresse email a bien été changée.')
+        this.toastr.success('L\'adresse email a bien été changée.');
         this.router.navigate(['/home']);
       })
       .catch(error => {
           console.log('Auth Service: Erreur changement mail');
-          this.toastr.error('Veuillez réessayer un peu plus tard.' + error.code)
+          this.toastr.error('Veuillez réessayer un peu plus tard.' + error.code);
           if (error.code)
               return error;
       });
@@ -134,7 +135,5 @@ export class AuthService {
     else {
       this.toastr.error('Désactivé sur le compte invité');
     }
-    
   }
-
 }

@@ -7,21 +7,21 @@ import { Parkour } from '../models/parkour-model';
   providedIn: 'root'
 })
 export class ParkourService {
+  
   userUid: string | null = "";
   userLoggedIn : boolean;
   constructor(private afFirestore : AngularFirestore, private afAuth: AngularFireAuth,) {
-
     this.userLoggedIn = false;
     this.afAuth.onAuthStateChanged((user)=> {
       if (user) {
-        this.userLoggedIn = true ;
-        this.userUid = user.uid ;
-      } else {
-        this.userLoggedIn = false ;
+        this.userLoggedIn = true;
+        this.userUid = user.uid;
+      } 
+      else {
+        this.userLoggedIn = false;
       }
     });
   }
-
   parkours: Parkour[] = [];
 
   toDateTime(secs : any) {
@@ -31,8 +31,8 @@ export class ParkourService {
   }
 
   getAllParkours(): Parkour[] {
-    var i = 0
-    this.parkours = []
+    var i = 0;
+    this.parkours = [];
     let trainings = this.afFirestore.firestore.doc('/users/'+ this.userUid).collection('parkours');
     trainings.get().then((querySnapshot) => { 
       querySnapshot.forEach((doc) => {
@@ -44,39 +44,29 @@ export class ParkourService {
           long: [doc.data()][0]['long'],
           parkourPos: [doc.data()][0]['parkourPos'],
           uid: doc.id
-        })
+        });
         
-    })
+    });
       
-  })
-  return this.parkours
+    });
+    return this.parkours
   }
 
   getParkourById(ParkourId: number): Parkour {
-    const parkour = this.parkours.find(parkour => parkour.id === ParkourId)
+    const parkour = this.parkours.find(parkour => parkour.id === ParkourId);
     if (!parkour) {
-        throw new Error(' not found !')
-      } else {
-          return parkour
-      }
+      throw new Error(' not found !');
+    }
+    else {
+      return parkour;
+    }
   }
 
-  uploadTestParkour(lat : number, long: number, parkourPos : [] ) :void {
-    this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').add({recordedDate : new Date(), lat : lat , long: long, parkourPos : parkourPos})
+  uploadParkour(lat : number, long: number, parkourPos : []) : void {
+    this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').add({recordedDate : new Date(), lat : lat , long: long, parkourPos : parkourPos});
   }
 
-  uploadParkour() :void {
-    this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').add({recordedDate : new Date(), lat : 46.4652 , long: 30.7385, parkourPos : [
-      { lat: 46.4652, lng: 30.7385 },
-      { lat: 46.4652, lng: 30.7385 },
-      { lat: 46.4652, lng: 30.7385 },
-      { lat: 46.4652, lng: 30.7385 },
-      { lat: 46.4652, lng: 30.7385 }
-    ]})
-  }
-
-  deleteParkour(parkourId : any ) :void {
+  deleteParkour(parkourId : any) : void {
     this.afFirestore.doc('/users/'+ this.userUid).collection('parkours').doc(parkourId).delete();
-}
-
+  }
 }

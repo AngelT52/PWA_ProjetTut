@@ -59,7 +59,6 @@ export class LoginPageComponent implements OnInit {
         this.toastr.error('Identifiants incorrects')
         console.log('Erreur avec la session invité', result);
         this.firebaseErrorMessage = result.message ;
-
       }
     })
   }
