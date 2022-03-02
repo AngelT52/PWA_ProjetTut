@@ -15,14 +15,13 @@ export class MapComponent implements OnInit {
     map!: google.maps.Map;
     marker: google.maps.Marker[] = [];
     refreshId: any;
-    recordData!: any[];
-    parkour!: any[] ;
+    recordData: any[] = [];
+    parkour: any[] = [] ;
 
     constructor(private toastr : ToastrService, private mapLoader: MapLoaderService, private parkourService : ParkourService) { 
     }
     ngOnInit(): void {
-        this.parkour = []
-        this.recordData = []
+        
         let loader = new Loader({
             apiKey: environment.googlemap.apiKey
         });
@@ -255,7 +254,7 @@ export class MapComponent implements OnInit {
         },3000)
     }
 
-    stopRecord():any {
+    stopRecord(): void {
         const stopbtn = document.getElementById("stop-button");
         const recordbtn = document.getElementById("record-button");
         recordbtn?.classList.toggle("hidden");
@@ -269,8 +268,7 @@ export class MapComponent implements OnInit {
                 parkourPos : this.recordData})
         })
         console.log((this.parkour)[0])
-      //  console.log(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
-      //  this.parkourService.uploadTestParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
+        this.parkourService.uploadTestParkour(parseFloat(this.parkour[0]['lat']),parseFloat(this.parkour[0]['long']),this.parkour[0]['parkourPos'])
     }
 
     focusMap() : void{ 

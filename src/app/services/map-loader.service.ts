@@ -6,8 +6,11 @@ import { environment } from 'src/environments/environment';
 providedIn: 'root'
 })
 export class MapLoaderService {
+parkourpath!: any[];
 
-constructor() { }
+constructor() { 
+    
+}
 
 
 loadMap(lat : number, long : number) : any {
@@ -214,13 +217,22 @@ let loader = new Loader({
 }
 
 loadMapParkour(parkourPos : Array<any>) :void {
+    this.parkourpath = []
+    for(var i = 0;i<parkourPos.length;i++) { 
+        this.parkourpath.push({
+            lat:parkourPos[i]['lat'],
+            lng: parkourPos[i]['long']
+        });
+    }  
+
+
     let loader = new Loader({
         apiKey: environment.googlemap.apiKey
     });
     
         loader.load().then(() => {
         const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-        center: parkourPos[0],
+        center: {lat :parkourPos[0]['lat'], lng:parkourPos[0]['long']},
         zoom: 18,
         maxZoom: 19,
         minZoom: 16,
@@ -412,25 +424,26 @@ loadMapParkour(parkourPos : Array<any>) :void {
         });
         
         new google.maps.Marker({
-        position: parkourPos[0],
+        position: {lat :parkourPos[0]['lat'], lng:parkourPos[0]['long']},
         map,
         title: "Début du parcours",
         });
 
         new google.maps.Marker({
-            position: parkourPos[parkourPos.length-1],
+            position: {lat :parkourPos[parkourPos.length-1]['lat'], lng:parkourPos[0]['long']},
             map,
             title: "Fin du parcours",
             });
-        
+
+         
         const flightPath = new google.maps.Polyline({
-        path: parkourPos,
+        path: this.parkourpath,
         geodesic: true,
         strokeColor: "#FF0000",
         strokeOpacity: 1.0,
         strokeWeight: 2,
         });
-    
+
         flightPath.setMap(map);
         
     });
