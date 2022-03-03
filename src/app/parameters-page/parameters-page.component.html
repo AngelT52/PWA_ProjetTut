@@ -3,6 +3,7 @@
 <p class="text-c_lightgreen text-2xl font-bold pt-4 px-4 text-center">Paramètres</p>
 <div class="p-8 container flex mx-auto w-full items-center justify-center">
     <div class="flex flex-col bg-gray-300 p-4 rounded-lg">
+        <a href="https://firebase.google.com/support/privacy/"  target="_blank" role="button" class="text-sm font-bold text-c_lightgreen text-center">Consulter les informations sur les données personnelles</a>
         <button *ngIf="pwa.promptEvent" type="button" (click)="installPwa()" class="text-white bg-c_green hover:bg-c_green_b focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Installer Sport App</button>
         <div *ngIf="(user | async)">
             <p>Votre nom : {{ (user | async)?.displayName }}</p>

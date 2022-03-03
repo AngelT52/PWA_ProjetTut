@@ -40,7 +40,6 @@ export class MapComponent implements OnInit {
         },1000)
 
         this.parkour= [];
-        this.isRecording= false;
         let loader = new Loader({
             apiKey: environment.googlemap.apiKey
         });
@@ -257,9 +256,8 @@ export class MapComponent implements OnInit {
     }
     
     recordParkour() : void { 
-        navigator.geolocation.getCurrentPosition((position) => {
-            
         this.isRecording= true;
+        navigator.geolocation.getCurrentPosition((position) => {
         this.recordData.push({
             lat: position.coords.latitude,
             long:position.coords.longitude
