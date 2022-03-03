@@ -12,7 +12,7 @@
                 <p>Adresse email Vérifié ✔️</p>
             </div>
                 <p  *ngIf="(afAuth.user | async)?.emailVerified == false" >Adresse mail non vérifiée ❌</p>
-                <a  *ngIf="(afAuth.user | async)?.emailVerified == false" role="button" class="text-sm font-bold text-c_lightgreen" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
+                <a  *ngIf="(afAuth.user | async)?.emailVerified == false" role="button" class="text-sm font-bold text-c_lightgreen text-center" (click)="sendMail()">Renvoyer vérification d'adresse mail</a>
                 <br>
             <div class="text-center">
                 <a routerLink="/reset-password" role="button" class="text-sm font-bold text-c_lightgreen text-center">Réinitialiser son mot de passe</a>

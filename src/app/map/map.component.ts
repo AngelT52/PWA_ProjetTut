@@ -268,7 +268,7 @@ export class MapComponent implements OnInit {
             lat: position.coords.latitude,
                 long:position.coords.longitude
             })
-            
+
         },3000)
         })
     }
@@ -283,7 +283,7 @@ export class MapComponent implements OnInit {
             parkourPos : this.recordData
         })
 
-        if(this.parkour.length > 9){
+        if(this.recordData.length > 9){
             this.parkourService.uploadParkour(this.parkour[0]['lat'],this.parkour[0]['long'],this.parkour[0]['parkourPos'])
             this.toastr.success('Parcours enregistré avec succès')
         }
